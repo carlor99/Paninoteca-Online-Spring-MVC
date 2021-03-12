@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scontrino</title>
+    <div th:replace="librerie :: testa">...</div>
+</head>
+<body class="">
+    <div th:replace="testa :: testa">...</div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <h3>Grazie per aver effettuato l'ordine</h3>
+                <br>
+                <h4 th:if="${#lists.size(carrello) != 0}" th:text="'Ristorante: ' + ${carrello[#lists.size(carrello)-1].ordine.ristorante.nome}"></h4>
+
+                <ul th:each="riga: ${carrello}" th:if="${riga.ordine.id == ordine.id}">
+                    <li th:text="${riga.quantita} + ' x ' + ${riga.prodotto.nome} + ' ' + ${#numbers.formatDecimal(riga.prodotto.prezzo*riga.quantita,1,2,'COMMA')} + ' €'"></li>
+                </ul>
+                <h3 th:text="'Totale ordine: ' + ${totale} + ' €'"></h3>
+
+                <h3 th:text="'Per il ritiro presenta questo codice in cassa: ' + ${ordine.codice}"></h3>
+                <h3 th:text="'Ora: ' + ${ordine.orario}"></h3>
+                <div id="qrcode"></div>
+                <br>
+                <form action="ristorante" method="post">
+                    <input type="hidden" name="nuovo" value="true">
+                    <button type="submit" class="btn btn-warning w-50" >Crea un nuovo ordine</button>
+                </form>
+                <script src="qrcode.min.js"></script>
+                <script type="text/javascript">
+                    new QRCode(document.getElementById("qrcode"),
+                    { text: "[[${ordine.codice}]]", width: 150, height: 150 } );
+                </script>
+                <br>
+                 <div class="covidscontrino">
+                    <img class="imgcovid"src="https://www.ratioquotidiano.it/img/articoli/1584394802-8771.jpeg"  >
+                    <p class="covidscontrinop">Ricordati di indossare la mascherina al momento del ritiro e di rispettare il distanziamento!</p>
+                </div>
+                <br>
+            </div>
+           
+        </div>
+    </div>
+
+    <div th:replace="coda :: coda">...</div>
+
+    <div th:replace="librerie :: coda">...</div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div th:replace="librerie :: testa">...</div>
+    <style>
+        #contenitore{
+            background-color:#f9b044;
+        }
+
+    </style>
+
+
+</head>
+<body>
+    <div th:replace="testa :: testa">...</div>
+
+    <div class="container" id="contenitore">
+        <div class="row">
+            <div class="col-6">
+                <div class="ordina">
+                    <p>Vasta scelta all'interno della nostra catena di ristoranti utilizza il nostro sistema di prenotazione e riserva il tuo posto!</p>
+                <a class="fs-3 text-black-50" href="ristorante">ORDINA ADESSO!</a> <br>
+            </div>
+                <br>
+                <div class="covid">
+                    <img class="imgcovid"src="https://www.ratioquotidiano.it/img/articoli/1584394802-8771.jpeg">
+                    <p class="covidp">Questo locale utilizza un sistema di prenotazione utile per evitare assembramenti, utilizza la MASCHERINA e rispetta il DISTANZIAMENTO. PROTEGGI TE STESSO E GLI ALTRI!</p>
+                
+                </div>
+                <br>
+
+            </div>
+            <div class="col-6">
+                <br>
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="foto/1.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="foto/2.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="foto/3.jpg" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div th:replace="coda :: coda">...</div>
+
+    <div th:replace="librerie :: coda">...</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Riepilogo ordine</title>
+    <div th:replace="librerie :: testa">...</div>
+</head>
+<body class="">
+    <div th:replace="testa :: testa">...</div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                    <h2>Riepilogo Ordine</h2>
+                    <h4 th:if="${#lists.size(carrello) != 0}" th:text="'Ristorante: ' + ${carrello[#lists.size(carrello)-1].ordine.ristorante.nome}"></h4>
+
+                    <ul th:each="riga: ${carrello}" th:if="${riga.ordine.id == ordine.id}">
+                        <li th:text="${riga.quantita} + ' x ' + ${riga.prodotto.nome} + ' ' + ${#numbers.formatDecimal(riga.prodotto.prezzo*riga.quantita,1,2,'COMMA')} + ' €'"></li>
+                    </ul>
+                    <h3 th:text="'Totale ordine: ' + ${totale} + ' €'"></h3>
+            </div>
+
+            <div class="col-6">
+                <h1>Scegli un orario</h1>
+
+                <form action="scontrino" method="post">
+
+                    <div class="btn-group w-75" role="group" aria-label="Basic radio toggle button group">
+                        <th:block th:each="orario,iterStat: ${orari}">
+                            <input type="radio" class="btn-check" name="btnradio" th:value="${orario}" th:id="'btnradio' + ${iterStat.count}" autocomplete="off" required>
+                            <label class="btn btn-outline-dark" th:for="'btnradio' + ${iterStat.count}" th:text="${orario}"></label>
+                        </th:block>
+                    </div>
+                    <br><br>
+                    <button type="submit" class="btn btn-warning w-50">Conferma ordine</button>
+                </form>
+
+                <button type="button" class="btn btn-secondary w-50" onclick="location.href='ordine'">Torna al carrello</button>
+
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="coda :: coda">...</div>
+
+    <div th:replace="librerie :: coda">...</div>
+</body>
+</html>

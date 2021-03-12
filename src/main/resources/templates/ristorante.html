@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<div th:replace="librerie :: testa">...</div>
+</head>
+
+<body class="">
+	<div th:replace="testa :: testa">...</div>
+
+	<div class="container">
+		<div class="row justify-content-center">
+
+			<div class="col-6">
+				<h1 class="h1">Scegli un Ristorante</h1>
+
+				<div class="card1 card" th:each="aperto: ${ristAperti}">
+					<div class="card-body">
+						<h5 class="card-title card-title-modifica" th:text="${aperto.nome}"></h5>
+						<p class="card-text card-text-modifica" th:text="${aperto.descrizione}"></p>
+						<p class="card-text card-text-modifica" th:text="${aperto.apertura} + ' - ' + ${aperto.chiusura}"></p>
+						<form action="ordine" method="post">
+							<button type="submit" name="ristorante_id" class="btn btn-warning w-50" th:value="${aperto.id}"><i class="bi bi-plus fs-3"></i></button>
+						</form>
+					</div>
+				</div>
+
+				<div class="card1 card" th:each="chiuso: ${ristChiusi}">
+					<div class="card-body">
+						<h5 class="card-title card-title-modifica" th:text="${chiuso.nome} "></h5>
+						<p class="card-text card-text-modifica" th:text="${chiuso.descrizione}"></p>
+						<p class="card-text card-text-modifica" th:text="'CHIUSO (' + ${chiuso.apertura} + ' - ' + ${chiuso.chiusura} + ')'"></p>
+						<form action="ordine" method="post">
+							<button type="submit" name="ristorante_id" class="btn btn-secondary w-50" th:value="${chiuso.id}" disabled><i class="bi bi-plus fs-3"></i></button>
+						</form>
+					</div>
+				</div>
+
+		</div>
+
+	</div>
+</div>
+</div>
+
+<div th:replace="coda :: coda">...</div>
+
+<div th:replace="librerie :: coda">...</div>
+</body>
+
+</html>
